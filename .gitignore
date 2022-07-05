@@ -1,0 +1,36 @@
+# Project
+.project
+.settings
+.vscode
+.idea
+
+# Dependencies
+vendor/
+vendors/
+
+# Coverage Reports
+reports/
+coverage.out
+coverage.html
+coverage.txt
+junitFormatReport.xml
+
+# Executable
+go-mux-jwt
+main
+
+# mac crap
+.DS_Store
+
+# livereload helper
+gin-bin
+
+# Logs
+logs
+
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed

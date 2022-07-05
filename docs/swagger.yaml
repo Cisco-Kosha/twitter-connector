@@ -1,0 +1,583 @@
+basePath: /
+definitions:
+  models.Specification:
+    properties:
+      access_token:
+        type: string
+      access_token_secret:
+        type: string
+      api_key:
+        type: string
+      api_key_secret:
+        type: string
+    type: object
+  twitter.BoundingBox:
+    properties:
+      coordinates:
+        items:
+          items:
+            items:
+              type: number
+            type: array
+          type: array
+        type: array
+      type:
+        type: string
+    type: object
+  twitter.Coordinates:
+    properties:
+      coordinates:
+        items:
+          type: number
+        type: array
+      type:
+        type: string
+    type: object
+  twitter.Entities:
+    properties:
+      hashtags:
+        items:
+          $ref: '#/definitions/twitter.HashtagEntity'
+        type: array
+      media:
+        items:
+          $ref: '#/definitions/twitter.MediaEntity'
+        type: array
+      urls:
+        items:
+          $ref: '#/definitions/twitter.URLEntity'
+        type: array
+      user_mentions:
+        items:
+          $ref: '#/definitions/twitter.MentionEntity'
+        type: array
+    type: object
+  twitter.ExtendedEntity:
+    properties:
+      media:
+        items:
+          $ref: '#/definitions/twitter.MediaEntity'
+        type: array
+    type: object
+  twitter.ExtendedTweet:
+    properties:
+      display_text_range:
+        items:
+          type: integer
+        type: array
+      entities:
+        $ref: '#/definitions/twitter.Entities'
+      extended_entities:
+        $ref: '#/definitions/twitter.ExtendedEntity'
+      full_text:
+        type: string
+    type: object
+  twitter.Followers:
+    properties:
+      next_cursor:
+        type: integer
+      next_cursor_str:
+        type: string
+      previous_cursor:
+        type: integer
+      previous_cursor_str:
+        type: string
+      users:
+        items:
+          $ref: '#/definitions/twitter.User'
+        type: array
+    type: object
+  twitter.HashtagEntity:
+    properties:
+      indices:
+        items:
+          type: integer
+        type: array
+      text:
+        type: string
+    type: object
+  twitter.MediaEntity:
+    properties:
+      display_url:
+        type: string
+      expanded_url:
+        type: string
+      id:
+        type: integer
+      id_str:
+        type: string
+      indices:
+        items:
+          type: integer
+        type: array
+      media_url:
+        type: string
+      media_url_https:
+        type: string
+      sizes:
+        $ref: '#/definitions/twitter.MediaSizes'
+      source_status_id:
+        type: integer
+      source_status_id_str:
+        type: string
+      type:
+        type: string
+      url:
+        type: string
+      video_info:
+        $ref: '#/definitions/twitter.VideoInfo'
+    type: object
+  twitter.MediaSize:
+    properties:
+      h:
+        type: integer
+      resize:
+        type: string
+      w:
+        type: integer
+    type: object
+  twitter.MediaSizes:
+    properties:
+      large:
+        $ref: '#/definitions/twitter.MediaSize'
+      medium:
+        $ref: '#/definitions/twitter.MediaSize'
+      small:
+        $ref: '#/definitions/twitter.MediaSize'
+      thumb:
+        $ref: '#/definitions/twitter.MediaSize'
+    type: object
+  twitter.MentionEntity:
+    properties:
+      id:
+        type: integer
+      id_str:
+        type: string
+      indices:
+        items:
+          type: integer
+        type: array
+      name:
+        type: string
+      screen_name:
+        type: string
+    type: object
+  twitter.Place:
+    properties:
+      attributes:
+        additionalProperties:
+          type: string
+        type: object
+      bounding_box:
+        $ref: '#/definitions/twitter.BoundingBox'
+      country:
+        type: string
+      country_code:
+        type: string
+      full_name:
+        type: string
+      geometry:
+        $ref: '#/definitions/twitter.BoundingBox'
+      id:
+        type: string
+      name:
+        type: string
+      place_type:
+        type: string
+      polylines:
+        items:
+          type: string
+        type: array
+      url:
+        type: string
+    type: object
+  twitter.Search:
+    properties:
+      search_metadata:
+        $ref: '#/definitions/twitter.SearchMetadata'
+      statuses:
+        items:
+          $ref: '#/definitions/twitter.Tweet'
+        type: array
+    type: object
+  twitter.SearchMetadata:
+    properties:
+      completed_in:
+        type: number
+      count:
+        type: integer
+      max_id:
+        type: integer
+      max_id_str:
+        type: string
+      next_results:
+        type: string
+      query:
+        type: string
+      refresh_url:
+        type: string
+      since_id:
+        type: integer
+      since_id_str:
+        type: string
+    type: object
+  twitter.Tweet:
+    properties:
+      coordinates:
+        $ref: '#/definitions/twitter.Coordinates'
+      created_at:
+        type: string
+      current_user_retweet:
+        $ref: '#/definitions/twitter.TweetIdentifier'
+      display_text_range:
+        items:
+          type: integer
+        type: array
+      entities:
+        $ref: '#/definitions/twitter.Entities'
+      extended_entities:
+        $ref: '#/definitions/twitter.ExtendedEntity'
+      extended_tweet:
+        $ref: '#/definitions/twitter.ExtendedTweet'
+      favorite_count:
+        type: integer
+      favorited:
+        type: boolean
+      filter_level:
+        type: string
+      full_text:
+        type: string
+      id:
+        type: integer
+      id_str:
+        type: string
+      in_reply_to_screen_name:
+        type: string
+      in_reply_to_status_id:
+        type: integer
+      in_reply_to_status_id_str:
+        type: string
+      in_reply_to_user_id:
+        type: integer
+      in_reply_to_user_id_str:
+        type: string
+      lang:
+        type: string
+      place:
+        $ref: '#/definitions/twitter.Place'
+      possibly_sensitive:
+        type: boolean
+      quote_count:
+        type: integer
+      quoted_status:
+        $ref: '#/definitions/twitter.Tweet'
+      quoted_status_id:
+        type: integer
+      quoted_status_id_str:
+        type: string
+      reply_count:
+        type: integer
+      retweet_count:
+        type: integer
+      retweeted:
+        type: boolean
+      retweeted_status:
+        $ref: '#/definitions/twitter.Tweet'
+      scopes:
+        additionalProperties: true
+        type: object
+      source:
+        type: string
+      text:
+        type: string
+      truncated:
+        type: boolean
+      user:
+        $ref: '#/definitions/twitter.User'
+      withheld_copyright:
+        type: boolean
+      withheld_in_countries:
+        items:
+          type: string
+        type: array
+      withheld_scope:
+        type: string
+    type: object
+  twitter.TweetIdentifier:
+    properties:
+      id:
+        type: integer
+      id_str:
+        type: string
+    type: object
+  twitter.URLEntity:
+    properties:
+      display_url:
+        type: string
+      expanded_url:
+        type: string
+      indices:
+        items:
+          type: integer
+        type: array
+      url:
+        type: string
+    type: object
+  twitter.User:
+    properties:
+      contributors_enabled:
+        type: boolean
+      created_at:
+        type: string
+      default_profile:
+        type: boolean
+      default_profile_image:
+        type: boolean
+      description:
+        type: string
+      email:
+        type: string
+      entities:
+        $ref: '#/definitions/twitter.UserEntities'
+      favourites_count:
+        type: integer
+      follow_request_sent:
+        type: boolean
+      followers_count:
+        type: integer
+      following:
+        type: boolean
+      friends_count:
+        type: integer
+      geo_enabled:
+        type: boolean
+      id:
+        type: integer
+      id_str:
+        type: string
+      is_translator:
+        type: boolean
+      lang:
+        type: string
+      listed_count:
+        type: integer
+      location:
+        type: string
+      name:
+        type: string
+      notifications:
+        type: boolean
+      profile_background_color:
+        type: string
+      profile_background_image_url:
+        type: string
+      profile_background_image_url_https:
+        type: string
+      profile_background_tile:
+        type: boolean
+      profile_banner_url:
+        type: string
+      profile_image_url:
+        type: string
+      profile_image_url_https:
+        type: string
+      profile_link_color:
+        type: string
+      profile_sidebar_border_color:
+        type: string
+      profile_sidebar_fill_color:
+        type: string
+      profile_text_color:
+        type: string
+      profile_use_background_image:
+        type: boolean
+      protected:
+        type: boolean
+      screen_name:
+        type: string
+      show_all_inline_media:
+        type: boolean
+      status:
+        $ref: '#/definitions/twitter.Tweet'
+      statuses_count:
+        type: integer
+      time_zone:
+        type: string
+      url:
+        type: string
+      utc_offset:
+        type: integer
+      verified:
+        type: boolean
+      withheld_in_countries:
+        items:
+          type: string
+        type: array
+      withheld_scope:
+        type: string
+    type: object
+  twitter.UserEntities:
+    properties:
+      description:
+        $ref: '#/definitions/twitter.Entities'
+      url:
+        $ref: '#/definitions/twitter.Entities'
+    type: object
+  twitter.VideoInfo:
+    properties:
+      aspect_ratio:
+        items:
+          type: integer
+        type: array
+      duration_millis:
+        type: integer
+      variants:
+        items:
+          $ref: '#/definitions/twitter.VideoVariant'
+        type: array
+    type: object
+  twitter.VideoVariant:
+    properties:
+      bitrate:
+        type: integer
+      content_type:
+        type: string
+      url:
+        type: string
+    type: object
+host: localhost:8005
+info:
+  contact:
+    email: eti@cisco.io
+    name: API Support
+  description: This is a Kosha REST serice for exposing many twitter features as REST
+    APIs with better consistency, observability
+  termsOfService: http://swagger.io/terms/
+  title: Twitter Connector API
+  version: "2.0"
+paths:
+  /api/v1/followers:
+    get:
+      consumes:
+      - application/json
+      description: Get all followers list from twitter's main user profile
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/twitter.Followers'
+      summary: Get followers from the twitter user's profile
+      tags:
+      - followers
+  /api/v1/search:
+    get:
+      consumes:
+      - application/json
+      description: Search tweets
+      parameters:
+      - description: Enter query string
+        in: query
+        name: query
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/twitter.Search'
+      summary: Search all tweets for a given query text
+      tags:
+      - search
+  /api/v1/specification/list:
+    get:
+      consumes:
+      - application/json
+      description: Get all environment variables that need to be supplied
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+      summary: Get details of the connector specification
+      tags:
+      - specification
+  /api/v1/specification/test:
+    post:
+      consumes:
+      - application/json
+      description: Check if user account can be verified
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Specification'
+      summary: Test if access tokens work against the specification
+      tags:
+      - specification
+  /api/v1/timeline:
+    get:
+      consumes:
+      - application/json
+      description: Get all homepage tweets from twitter's main user timeline
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: json
+      summary: Get tweets from the twitter user's timeline
+      tags:
+      - timeline
+  /api/v1/tweet:
+    post:
+      consumes:
+      - application/json
+      description: Submit a new tweet
+      parameters:
+      - description: Enter tweet string
+        in: body
+        name: text
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/twitter.Tweet'
+      summary: Post a tweet on user's timeline
+      tags:
+      - tweets
+  /api/v1/user/{username}:
+    get:
+      consumes:
+      - application/json
+      description: Get profile information of the twitter user
+      parameters:
+      - description: Enter username
+        in: path
+        name: username
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/twitter.User'
+      summary: Get details of the twitter user
+      tags:
+      - users
+swagger: "2.0"
