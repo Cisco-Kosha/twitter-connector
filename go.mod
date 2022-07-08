@@ -3,6 +3,7 @@ module github.com/91pavan/twitter-connector
 go 1.18
 
 require (
+	github.com/coreos/pkg v0.0.0-20180928190104-399ea9e2e55f
 	github.com/dghubble/go-twitter v0.0.0-20220702170435-7faa89b027c5
 	github.com/dghubble/oauth1 v0.7.1
 	github.com/gorilla/mux v1.8.0

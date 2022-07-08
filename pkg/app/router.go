@@ -223,7 +223,7 @@ func (a *App) postTweet(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 
 	a.Log.Infof("Posting a new tweet: %+v", t)
-	tw, _, err := a.Client.Statuses.Update("Test tweet", nil)
+	tw, _, err := a.Client.Statuses.Update(t.Text, nil)
 	if err != nil {
 		respondWithError(w, http.StatusBadRequest, "Unable to post tweet. Error: "+err.Error())
 		return
