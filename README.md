@@ -39,3 +39,10 @@ To generate `swagger.json` and `swagger.yaml` files based on the API documentati
 go install github.com/swaggo/swag/cmd/swag@latest
 swag init -g main.go --parseDependency --parseInternal
 ```
+
+To generate OpenAPISpec version 3 from Swagger 2.0 specification, run - 
+
+```bash
+npm i api-spec-converter
+npx api-spec-converter --from=swagger_2 --to=openapi_3 --syntax=json ./docs/swagger.json > openapi.json
+```

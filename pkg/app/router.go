@@ -117,7 +117,7 @@ func (a *App) getUsername(w http.ResponseWriter, r *http.Request) {
 // @Tags timeline
 // @Accept  json
 // @Produce  json
-// @Success 200 json []twitter.Tweet
+// @Success 200 {object} []twitter.Tweet
 // @Router /api/v1/timeline [get]
 func (a *App) getTimeline(w http.ResponseWriter, r *http.Request) {
 

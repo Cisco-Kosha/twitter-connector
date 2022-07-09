@@ -138,7 +138,10 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "json"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/twitter.Tweet"
+                            }
                         }
                     }
                 }

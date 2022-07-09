@@ -1,0 +1,885 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "contact": {
+      "email": "eti@cisco.io",
+      "name": "API Support"
+    },
+    "description": "This is a Kosha REST serice for exposing many twitter features as REST APIs with better consistency, observability",
+    "termsOfService": "http://swagger.io/terms/",
+    "title": "Twitter Connector API",
+    "version": "2.0"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/v1/followers": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/twitter.Followers"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "followers"
+        ],
+        "description": "Get all followers list from twitter's main user profile",
+        "summary": "Get followers from the twitter user's profile"
+      }
+    },
+    "/api/v1/search": {
+      "get": {
+        "parameters": [
+          {
+            "description": "Enter query string",
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/twitter.Search"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "search"
+        ],
+        "description": "Search tweets",
+        "summary": "Search all tweets for a given query text"
+      }
+    },
+    "/api/v1/specification/list": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "specification"
+        ],
+        "description": "Get all environment variables that need to be supplied",
+        "summary": "Get details of the connector specification"
+      }
+    },
+    "/api/v1/specification/test": {
+      "post": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/models.Specification"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "specification"
+        ],
+        "description": "Check if user account can be verified",
+        "summary": "Test if access tokens work against the specification"
+      }
+    },
+    "/api/v1/timeline": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/twitter.Tweet"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "timeline"
+        ],
+        "description": "Get all homepage tweets from twitter's main user timeline",
+        "summary": "Get tweets from the twitter user's timeline"
+      }
+    },
+    "/api/v1/tweet": {
+      "post": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/twitter.Tweet"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "tweets"
+        ],
+        "description": "Submit a new tweet",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "description": "Enter tweet string",
+          "required": true
+        },
+        "summary": "Post a tweet on user's timeline"
+      }
+    },
+    "/api/v1/user/{username}": {
+      "get": {
+        "parameters": [
+          {
+            "description": "Enter username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/twitter.User"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "description": "Get profile information of the twitter user",
+        "summary": "Get details of the twitter user"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "models.Specification": {
+        "properties": {
+          "access_token": {
+            "type": "string"
+          },
+          "access_token_secret": {
+            "type": "string"
+          },
+          "api_key": {
+            "type": "string"
+          },
+          "api_key_secret": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.BoundingBox": {
+        "properties": {
+          "coordinates": {
+            "items": {
+              "items": {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              },
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.Coordinates": {
+        "properties": {
+          "coordinates": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.Entities": {
+        "properties": {
+          "hashtags": {
+            "items": {
+              "$ref": "#/components/schemas/twitter.HashtagEntity"
+            },
+            "type": "array"
+          },
+          "media": {
+            "items": {
+              "$ref": "#/components/schemas/twitter.MediaEntity"
+            },
+            "type": "array"
+          },
+          "urls": {
+            "items": {
+              "$ref": "#/components/schemas/twitter.URLEntity"
+            },
+            "type": "array"
+          },
+          "user_mentions": {
+            "items": {
+              "$ref": "#/components/schemas/twitter.MentionEntity"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.ExtendedEntity": {
+        "properties": {
+          "media": {
+            "items": {
+              "$ref": "#/components/schemas/twitter.MediaEntity"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.ExtendedTweet": {
+        "properties": {
+          "display_text_range": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "entities": {
+            "$ref": "#/components/schemas/twitter.Entities"
+          },
+          "extended_entities": {
+            "$ref": "#/components/schemas/twitter.ExtendedEntity"
+          },
+          "full_text": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.Followers": {
+        "properties": {
+          "next_cursor": {
+            "type": "integer"
+          },
+          "next_cursor_str": {
+            "type": "string"
+          },
+          "previous_cursor": {
+            "type": "integer"
+          },
+          "previous_cursor_str": {
+            "type": "string"
+          },
+          "users": {
+            "items": {
+              "$ref": "#/components/schemas/twitter.User"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.HashtagEntity": {
+        "properties": {
+          "indices": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.MediaEntity": {
+        "properties": {
+          "display_url": {
+            "type": "string"
+          },
+          "expanded_url": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "id_str": {
+            "type": "string"
+          },
+          "indices": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "media_url": {
+            "type": "string"
+          },
+          "media_url_https": {
+            "type": "string"
+          },
+          "sizes": {
+            "$ref": "#/components/schemas/twitter.MediaSizes"
+          },
+          "source_status_id": {
+            "type": "integer"
+          },
+          "source_status_id_str": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "video_info": {
+            "$ref": "#/components/schemas/twitter.VideoInfo"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.MediaSize": {
+        "properties": {
+          "h": {
+            "type": "integer"
+          },
+          "resize": {
+            "type": "string"
+          },
+          "w": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.MediaSizes": {
+        "properties": {
+          "large": {
+            "$ref": "#/components/schemas/twitter.MediaSize"
+          },
+          "medium": {
+            "$ref": "#/components/schemas/twitter.MediaSize"
+          },
+          "small": {
+            "$ref": "#/components/schemas/twitter.MediaSize"
+          },
+          "thumb": {
+            "$ref": "#/components/schemas/twitter.MediaSize"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.MentionEntity": {
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "id_str": {
+            "type": "string"
+          },
+          "indices": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "name": {
+            "type": "string"
+          },
+          "screen_name": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.Place": {
+        "properties": {
+          "attributes": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "bounding_box": {
+            "$ref": "#/components/schemas/twitter.BoundingBox"
+          },
+          "country": {
+            "type": "string"
+          },
+          "country_code": {
+            "type": "string"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/twitter.BoundingBox"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "place_type": {
+            "type": "string"
+          },
+          "polylines": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.Search": {
+        "properties": {
+          "search_metadata": {
+            "$ref": "#/components/schemas/twitter.SearchMetadata"
+          },
+          "statuses": {
+            "items": {
+              "$ref": "#/components/schemas/twitter.Tweet"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.SearchMetadata": {
+        "properties": {
+          "completed_in": {
+            "type": "number"
+          },
+          "count": {
+            "type": "integer"
+          },
+          "max_id": {
+            "type": "integer"
+          },
+          "max_id_str": {
+            "type": "string"
+          },
+          "next_results": {
+            "type": "string"
+          },
+          "query": {
+            "type": "string"
+          },
+          "refresh_url": {
+            "type": "string"
+          },
+          "since_id": {
+            "type": "integer"
+          },
+          "since_id_str": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.Tweet": {
+        "properties": {
+          "coordinates": {
+            "$ref": "#/components/schemas/twitter.Coordinates"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "current_user_retweet": {
+            "$ref": "#/components/schemas/twitter.TweetIdentifier"
+          },
+          "display_text_range": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "entities": {
+            "$ref": "#/components/schemas/twitter.Entities"
+          },
+          "extended_entities": {
+            "$ref": "#/components/schemas/twitter.ExtendedEntity"
+          },
+          "extended_tweet": {
+            "$ref": "#/components/schemas/twitter.ExtendedTweet"
+          },
+          "favorite_count": {
+            "type": "integer"
+          },
+          "favorited": {
+            "type": "boolean"
+          },
+          "filter_level": {
+            "type": "string"
+          },
+          "full_text": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "id_str": {
+            "type": "string"
+          },
+          "in_reply_to_screen_name": {
+            "type": "string"
+          },
+          "in_reply_to_status_id": {
+            "type": "integer"
+          },
+          "in_reply_to_status_id_str": {
+            "type": "string"
+          },
+          "in_reply_to_user_id": {
+            "type": "integer"
+          },
+          "in_reply_to_user_id_str": {
+            "type": "string"
+          },
+          "lang": {
+            "type": "string"
+          },
+          "place": {
+            "$ref": "#/components/schemas/twitter.Place"
+          },
+          "possibly_sensitive": {
+            "type": "boolean"
+          },
+          "quote_count": {
+            "type": "integer"
+          },
+          "quoted_status": {
+            "$ref": "#/components/schemas/twitter.Tweet"
+          },
+          "quoted_status_id": {
+            "type": "integer"
+          },
+          "quoted_status_id_str": {
+            "type": "string"
+          },
+          "reply_count": {
+            "type": "integer"
+          },
+          "retweet_count": {
+            "type": "integer"
+          },
+          "retweeted": {
+            "type": "boolean"
+          },
+          "retweeted_status": {
+            "$ref": "#/components/schemas/twitter.Tweet"
+          },
+          "scopes": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "source": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "truncated": {
+            "type": "boolean"
+          },
+          "user": {
+            "$ref": "#/components/schemas/twitter.User"
+          },
+          "withheld_copyright": {
+            "type": "boolean"
+          },
+          "withheld_in_countries": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "withheld_scope": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.TweetIdentifier": {
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "id_str": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.URLEntity": {
+        "properties": {
+          "display_url": {
+            "type": "string"
+          },
+          "expanded_url": {
+            "type": "string"
+          },
+          "indices": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.User": {
+        "properties": {
+          "contributors_enabled": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "default_profile": {
+            "type": "boolean"
+          },
+          "default_profile_image": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "entities": {
+            "$ref": "#/components/schemas/twitter.UserEntities"
+          },
+          "favourites_count": {
+            "type": "integer"
+          },
+          "follow_request_sent": {
+            "type": "boolean"
+          },
+          "followers_count": {
+            "type": "integer"
+          },
+          "following": {
+            "type": "boolean"
+          },
+          "friends_count": {
+            "type": "integer"
+          },
+          "geo_enabled": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "id_str": {
+            "type": "string"
+          },
+          "is_translator": {
+            "type": "boolean"
+          },
+          "lang": {
+            "type": "string"
+          },
+          "listed_count": {
+            "type": "integer"
+          },
+          "location": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "notifications": {
+            "type": "boolean"
+          },
+          "profile_background_color": {
+            "type": "string"
+          },
+          "profile_background_image_url": {
+            "type": "string"
+          },
+          "profile_background_image_url_https": {
+            "type": "string"
+          },
+          "profile_background_tile": {
+            "type": "boolean"
+          },
+          "profile_banner_url": {
+            "type": "string"
+          },
+          "profile_image_url": {
+            "type": "string"
+          },
+          "profile_image_url_https": {
+            "type": "string"
+          },
+          "profile_link_color": {
+            "type": "string"
+          },
+          "profile_sidebar_border_color": {
+            "type": "string"
+          },
+          "profile_sidebar_fill_color": {
+            "type": "string"
+          },
+          "profile_text_color": {
+            "type": "string"
+          },
+          "profile_use_background_image": {
+            "type": "boolean"
+          },
+          "protected": {
+            "type": "boolean"
+          },
+          "screen_name": {
+            "type": "string"
+          },
+          "show_all_inline_media": {
+            "type": "boolean"
+          },
+          "status": {
+            "$ref": "#/components/schemas/twitter.Tweet"
+          },
+          "statuses_count": {
+            "type": "integer"
+          },
+          "time_zone": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "utc_offset": {
+            "type": "integer"
+          },
+          "verified": {
+            "type": "boolean"
+          },
+          "withheld_in_countries": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "withheld_scope": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.UserEntities": {
+        "properties": {
+          "description": {
+            "$ref": "#/components/schemas/twitter.Entities"
+          },
+          "url": {
+            "$ref": "#/components/schemas/twitter.Entities"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.VideoInfo": {
+        "properties": {
+          "aspect_ratio": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "duration_millis": {
+            "type": "integer"
+          },
+          "variants": {
+            "items": {
+              "$ref": "#/components/schemas/twitter.VideoVariant"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "twitter.VideoVariant": {
+        "properties": {
+          "bitrate": {
+            "type": "integer"
+          },
+          "content_type": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    }
+  }
+}

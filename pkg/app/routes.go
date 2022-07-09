@@ -19,5 +19,5 @@ func (a *App) initializeRoutes() {
 	a.Router.HandleFunc(apiV1+"/followers", a.getFollowers).Methods("GET", "OPTIONS")
 
 	// Swagger
-	a.Router.PathPrefix("/swagger").Handler(httpSwagger.WrapHandler)
+	a.Router.PathPrefix("/docs").Handler(httpSwagger.WrapHandler)
 }

@@ -533,7 +533,9 @@ paths:
         "200":
           description: OK
           schema:
-            type: json
+            items:
+              $ref: '#/definitions/twitter.Tweet'
+            type: array
       summary: Get tweets from the twitter user's timeline
       tags:
       - timeline
