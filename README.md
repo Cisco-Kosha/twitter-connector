@@ -29,7 +29,7 @@ API_KEY=<apikey> API_KEY_SECRET=<apikey-secret> ACCESS_TOKEN=<token> ACCESS_TOKE
 
 This will start a worker and expose the API on port `8005` on the host machine
 
-Swagger docs is available at `https://localhost:8005/swagger`
+Swagger docs is available at `https://localhost:8005/docs`
 
 ## Generating Swagger Documentation
 
