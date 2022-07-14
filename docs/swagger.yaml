@@ -11,6 +11,11 @@ definitions:
       api_key_secret:
         type: string
     type: object
+  models.Tweet:
+    properties:
+      text:
+        type: string
+    type: object
   twitter.BoundingBox:
     properties:
       coordinates:
@@ -550,7 +555,7 @@ paths:
         name: text
         required: true
         schema:
-          type: string
+          $ref: '#/definitions/models.Tweet'
       produces:
       - application/json
       responses:

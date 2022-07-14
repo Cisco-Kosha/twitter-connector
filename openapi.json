@@ -157,7 +157,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string"
+                "$ref": "#/components/schemas/models.Tweet"
               }
             }
           },
@@ -214,6 +214,14 @@
             "type": "string"
           },
           "api_key_secret": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "models.Tweet": {
+        "properties": {
+          "text": {
             "type": "string"
           }
         },

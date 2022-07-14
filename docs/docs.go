@@ -167,7 +167,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.Tweet"
                         }
                     }
                 ],
@@ -228,6 +228,14 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "api_key_secret": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Tweet": {
+            "type": "object",
+            "properties": {
+                "text": {
                     "type": "string"
                 }
             }

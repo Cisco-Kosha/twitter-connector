@@ -198,7 +198,7 @@ func (a *App) searchTweets(w http.ResponseWriter, r *http.Request) {
 // @Tags tweets
 // @Accept  json
 // @Produce  json
-// @Param text body string true "Enter tweet string"
+// @Param text body models.Tweet true "Enter tweet string"
 // @Success 200 {object} twitter.Tweet
 // @Router /api/v1/tweet [post]
 func (a *App) postTweet(w http.ResponseWriter, r *http.Request) {
