@@ -10,7 +10,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// listConnectorSpecification godoc
+// ListConnectorSpecification godoc
 // @Summary Get details of the connector specification
 // @Description Get all environment variables that need to be supplied
 // @Tags specification
@@ -18,7 +18,7 @@ import (
 // @Produce  json
 // @Success 200 {object} object
 // @Router /api/v1/specification/list [get]
-func (a *App) listConnectorSpecification(w http.ResponseWriter, r *http.Request) {
+func (a *App) ListConnectorSpecification(w http.ResponseWriter, r *http.Request) {
 
 	//Allow CORS here By * or specific origin
 	w.Header().Set("Access-Control-Allow-Origin", "*")
