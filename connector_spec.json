@@ -1,6 +1,40 @@
 {
-  "API_KEY": "Access key",
-  "API_KEY_SECRET": "Access key Secret",
-  "ACCESS_TOKEN": "Access Token",
-  "ACCESS_TOKEN_SECRET": "Access Token Secret"
+  "fields": [
+    {
+      "field": "API_KEY",
+      "type": "String",
+      "minLength": 3,
+      "maxLength": 40,
+      "required": true,
+      "description": "Consumer Key",
+      "example": "TmiVYoLyeUyX9MBdKjtqQZjCB"
+    },
+    {
+      "field": "API_KEY_SECRET",
+      "type": "String",
+      "minLength": 10,
+      "maxLength": 60,
+      "required": true,
+      "description": "Consumer Secret",
+      "example": "oA8f7fXLkZ7dKGukms1yFUNDdhlqd9koJNGfDaedpAoeaoepBd"
+    },
+    {
+      "field": "ACCESS_TOKEN",
+      "type": "String",
+      "minLength": 10,
+      "maxLength": 60,
+      "required": true,
+      "description": "Twitter Developer Access Token",
+      "example": "337265965-fPOgoWoSdSQxM8VE8GfvKzGYrWhX9WjliZIY0ENS"
+    },
+    {
+      "field": "ACCESS_TOKEN_SECRET",
+      "type": "String",
+      "minLength": 10,
+      "maxLength": 60,
+      "required": true,
+      "description": "Twitter Developer Access Token Secret",
+      "example": "x4ZocH8PIYRFBF1bJJ7HgetSuGqk8NUNYspafEIX4cdi1"
+    }
+  ]
 }
