@@ -10,3 +10,17 @@ type Specification struct {
 	AccessToken       string `json:"access_token,omitempty"`
 	AccessTokenSecret string `json:"access_token_secret,omitempty"`
 }
+
+type SpecificationV2 struct {
+	Fields []FieldSpecificationV2 `json:"fields,omitempty"`
+}
+
+type FieldSpecificationV2 struct {
+	Field       string `json:"field,omitempty"`
+	Type        string `json:"type,omitempty"`
+	MinLength   int    `json:"minLength,omitempty"`
+	MaxLength   int    `json:"maxLength,omitempty"`
+	Required    bool   `json:"required,omitempty"`
+	Description string `json:"description,omitempty"`
+	Example     string `json:"example,omitempty"`
+}
