@@ -1,10 +1,18 @@
-name: go-pipeline-demo
-on: push
+name: twitter-connector CI
 
-
+on:
+  push:
+    branches:
+    - main
+    - 'releases/**'
+  pull_request:
+    branches:
+    - main
+    - 'releases/**'
+  
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: ${{ github.actor }}/twitter-connector
+  IMAGE_NAME: ${{ secrets.DOCKER_REPO }}/${{ github.event.repository.name }}
 
 jobs:
   test:
@@ -42,12 +50,12 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        uses: docker/metadata-action@v4
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        uses: docker/build-push-action@v3
         with:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
