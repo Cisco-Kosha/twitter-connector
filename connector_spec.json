@@ -3,39 +3,47 @@
   "fields": [
     {
       "field": "API_KEY",
+      "displayName": "Consumer Key or API Key",
       "type": "String",
       "minLength": 3,
       "maxLength": 40,
       "required": true,
       "description": "Consumer Key",
-      "example": "TmiVYoLyeUyX9MBdKjtqQZjCB"
+      "example": "TmiVYoLyeUyX9MBdKjtqQZjCB",
+      "helpSection": "Navigate to the developer portal\nExpand the 'Projects and Apps' dropdown in the sidenav\nOpen the App which is associated with the API Key and Secret that you would like to find or regenerate\nNavigate to the Keys and tokens tab\nFrom there, you will find all of the credentials associated with your App. "
     },
     {
       "field": "API_KEY_SECRET",
+      "displayName": "Consumer Key Secret or Consumer Key Secret",
       "type": "String",
       "minLength": 10,
       "maxLength": 60,
       "required": true,
       "description": "Consumer Secret",
-      "example": "oA8f7fXLkZ7dKGukms1yFUNDdhlqd9koJNGfDaedpAoeaoepBd"
+      "example": "oA8f7fXLkZ7dKGukms1yFUNDdhlqd9koJNGfDaedpAoeaoepBd",
+      "helpSection": "Navigate to the developer portal\nExpand the 'Projects and Apps' dropdown in the sidenav\nOpen the App which is associated with the API Key and Secret that you would like to find or regenerate\nNavigate to the Keys and tokens tab"
     },
     {
       "field": "ACCESS_TOKEN",
+      "displayName": "Access Token",
       "type": "String",
       "minLength": 10,
       "maxLength": 60,
       "required": true,
       "description": "Twitter Developer Access Token",
-      "example": "337265965-fPOgoWoSdSQxM8VE8GfvKzGYrWhX9WjliZIY0ENS"
+      "example": "337265965-fPOgoWoSdSQxM8VE8GfvKzGYrWhX9WjliZIY0ENS",
+      "helpSection": "Login to your Twitter account on developer.twitter.com.\nNavigate to the Twitter app dashboard and open the Twitter app for which you would like to generate access tokens.\nNavigate to the \"Keys and Tokens\" page.\nSelect 'Create' under the \"Access token & access token secret\" section."
     },
     {
       "field": "ACCESS_TOKEN_SECRET",
+      "displayName": "Access Token Secret",
       "type": "String",
       "minLength": 10,
       "maxLength": 60,
       "required": true,
       "description": "Twitter Developer Access Token Secret",
-      "example": "x4ZocH8PIYRFBF1bJJ7HgetSuGqk8NUNYspafEIX4cdi1"
+      "example": "x4ZocH8PIYRFBF1bJJ7HgetSuGqk8NUNYspafEIX4cdi1",
+      "helpSection": "Login to your Twitter account on developer.twitter.com.\nNavigate to the Twitter app dashboard and open the Twitter app for which you would like to generate access tokens.\nNavigate to the \"Keys and Tokens\" page.\nSelect 'Create' under the \"Access token & access token secret\" section."
     }
   ]
 }
