@@ -8,8 +8,8 @@ import (
 	"github.com/dghubble/go-twitter/twitter"
 	"github.com/gorilla/mux"
 
-	"github.com/91pavan/twitter-connector/pkg/config"
-	"github.com/91pavan/twitter-connector/pkg/logger"
+	"github.com/Cisco-Kosha/twitter-connector/pkg/config"
+	"github.com/Cisco-Kosha/twitter-connector/pkg/logger"
 )
 
 type App struct {
