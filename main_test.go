@@ -2,8 +2,8 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/91pavan/twitter-connector/pkg/app"
-	"github.com/91pavan/twitter-connector/pkg/models"
+	"github.com/Cisco-Kosha/twitter-connector/pkg/app"
+	"github.com/Cisco-Kosha/twitter-connector/pkg/models"
 	"net/http"
 	"net/http/httptest"
 	"testing"
