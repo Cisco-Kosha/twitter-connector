@@ -1,4 +1,4 @@
-module github.com/91pavan/twitter-connector
+module github.com/Cisco-Kosha/twitter-connector
 
 go 1.18
 
