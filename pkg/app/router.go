@@ -2,7 +2,7 @@ package app
 
 import (
 	"encoding/json"
-	"github.com/91pavan/twitter-connector/pkg/models"
+	"github.com/Cisco-Kosha/twitter-connector/pkg/models"
 	"github.com/dghubble/oauth1"
 	"net/http"
 
