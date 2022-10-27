@@ -9,10 +9,10 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/91pavan/twitter-connector/pkg/app"
-	"github.com/91pavan/twitter-connector/pkg/logger"
+	"github.com/Cisco-Kosha/twitter-connector/pkg/app"
+	"github.com/Cisco-Kosha/twitter-connector/pkg/logger"
 
-	_ "github.com/91pavan/twitter-connector/docs"
+	_ "github.com/Cisco-Kosha/twitter-connector/docs"
 )
 
 var (
