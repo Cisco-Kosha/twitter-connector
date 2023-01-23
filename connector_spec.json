@@ -14,7 +14,7 @@
     },
     {
       "field": "API_KEY_SECRET",
-      "displayName": "Consumer Key Secret or Consumer Key Secret",
+      "displayName": "Consumer Key Secret or API Key Secret",
       "type": "String",
       "minLength": 10,
       "maxLength": 60,
