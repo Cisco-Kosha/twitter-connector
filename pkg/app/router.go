@@ -176,7 +176,8 @@ func (a *App) getTimeline(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Methods", "*")
 
 	timeline, _, err := a.Client.Timelines.HomeTimeline(&twitter.HomeTimelineParams{
-		Count: 20,
+		Count:     20,
+		TweetMode: "extended",
 	})
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
