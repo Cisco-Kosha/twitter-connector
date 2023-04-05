@@ -237,6 +237,7 @@ func (a *App) searchTweets(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		respondWithJSON(w, http.StatusOK, res)
+		return
 	}
 
 	respondWithJSON(w, http.StatusBadRequest, map[string]string{"error": "query parameter empty"})
