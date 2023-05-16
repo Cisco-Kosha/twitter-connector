@@ -30,5 +30,5 @@ Use the connector to get a list of tweets and related details from a user's time
 
 To authenticate when provisioning the Kosha Twitter connector, you need your:
 
-* Consumer key or API key, as well as their secrets
+* Consumer key or API key and secret
 * Developer access token and secret
